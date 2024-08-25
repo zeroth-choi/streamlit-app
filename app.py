@@ -1,4 +1,3 @@
-# https://blog.zarathu.com/posts/2023-02-01-streamlit/
 import numpy as np
 import pandas as pd 
 from sklearn.datasets import load_iris 
@@ -19,11 +18,10 @@ def mapp_species(x):
 
 df['species'] = df['species'].apply(mapp_species)
 
-# 사이드바에서 select box로 종을을 선택하면 그에 해당하는 행만 추출하여 데이터프레임 생성
+# 사이드바에서 select box로 종을 선택하면 그에 해당하는 행만 추출하여 데이터프레임 생성
 st.sidebar.title('붓꽃(iris)의 종')
 
 # multiselect를 이용하여 여러개 선택 
-# return : list
 select_multi_species = st.sidebar.multiselect(
     '확인하고자 하는 종을 선택해 주세요. (복수 선택 가능)',
     ['setosa', 'versicolor', 'virginica']
@@ -56,8 +54,6 @@ with col2:
 with col3:
     st.image('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Iris_virginica.jpg/220px-Iris_virginica.jpg', caption="virginica")
 
-# button이 눌리는 경우 start_button의 값이 true로 바뀌게 된다.
-# 이를 이용해서 if문으로 버튼이 눌렸을 때를 구현 
 if start_button:
     tmp_df = df[df['species'].isin(select_multi_species)]
     #slider input으로 받은 값을 기준으로 데이터를 필터링
