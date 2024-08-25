@@ -13,23 +13,22 @@ df['species']= iris_dataset.target
 
 species_dict = {0 :'setosa', 1 :'versicolor', 2 :'virginica'} 
 
-def mapp_species(x):
+def map_species(x):
   return species_dict[x]
 
-df['species'] = df['species'].apply(mapp_species)
+df['species'] = df['species'].apply(map_species)
 
-# 사이드바에서 select box로 종을 선택하면 그에 해당하는 행만 추출하여 데이터프레임 생성
 st.sidebar.title('붓꽃(iris)의 종')
 
 # multiselect를 이용하여 여러개 선택 
-select_multi_species = st.sidebar.multiselect(
+select_species = st.sidebar.multiselect(
     '확인하고자 하는 종을 선택해 주세요. (복수 선택 가능)',
     ['setosa', 'versicolor', 'virginica']
 )
 
-# 라디오에 선택한 내용을 radio select변수에 저장
-radio_select =st.sidebar.radio(
-    "선택 기준?",
+# 라디오에 선택한 내용을 select_radio 변수에 저장
+select_radio =st.sidebar.radio(
+    "범위를 지정할 기준",
     ['sepal length', 'sepal width', 'petal length', 'petal width'],
     horizontal=True
     )
@@ -53,11 +52,12 @@ with col2:
     st.image('https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Iris_versicolor_3.jpg/220px-Iris_versicolor_3.jpg', caption="versicolor")
 with col3:
     st.image('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Iris_virginica.jpg/220px-Iris_virginica.jpg', caption="virginica")
+st.markdown('왼쪽에서 **확인하고자 하는 종**과 **범위를 지정할 기준**을 선택한 뒤 **선택한 기준의 범위**를 지정하고 **filter 적용** 버튼을 누르면 그에 해당하는 데이터만 추출하여 표, 도구분포, 산점도를 생성합니다.')
 
 if start_button:
-    tmp_df = df[df['species'].isin(select_multi_species)]
+    tmp_df = df[df['species'].isin(select_species)]
     #slider input으로 받은 값을 기준으로 데이터를 필터링
-    tmp_df= tmp_df[ (tmp_df[radio_select] >= slider_range[0]) & (tmp_df[radio_select] <= slider_range[1])]
+    tmp_df= tmp_df[ (tmp_df[select_radio] >= slider_range[0]) & (tmp_df[select_radio] <= slider_range[1])]
     st.header("선택된 데이터")
     st.dataframe(tmp_df)
   
