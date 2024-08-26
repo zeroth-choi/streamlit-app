@@ -52,7 +52,7 @@ with col2:
     st.image('https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Iris_versicolor_3.jpg/220px-Iris_versicolor_3.jpg', caption="versicolor")
 with col3:
     st.image('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Iris_virginica.jpg/220px-Iris_virginica.jpg', caption="virginica")
-st.markdown('왼쪽에서 **확인하고자 하는 종**과 **범위를 지정할 기준**을 선택한 뒤 **선택한 기준의 범위**를 지정하고 **filter 적용** 버튼을 누르면 그에 해당하는 데이터만 추출하여 표, 도구분포, 산점도를 생성합니다.')
+st.markdown('왼쪽에서 **확인하고자 하는 종**과 **범위를 지정할 기준**을 선택한 뒤 **선택한 기준의 범위**를 지정하고 **filter 적용** 버튼을 누르면 그에 해당하는 데이터만 추출하여 표, 도수분포, 산점도를 생성합니다.')
 
 if start_button:
     tmp_df = df[df['species'].isin(select_species)]
