@@ -5,6 +5,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 
+# Configure Streamlit page settings
+st.set_page_config(
+    page_title="데이터 시각화",
+    layout="wide",  # Page layout option
+)
+
 iris_dataset = load_iris()
 
 df= pd.DataFrame(data=iris_dataset.data, columns=iris_dataset.feature_names)
